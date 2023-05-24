@@ -8,18 +8,33 @@ function startNewGame(){
 
     gridElement.innerHTML = "";
 
+    const bombContainer = getRandomUniqueNumber( 1, 100, 16 );
+    console.log('questa sono bombe: '+bombContainer)
+
     for (let index = 0; index < 100; index++) {
         const newCell = createElement('div','square',
-                        `<p>${index + 1}</p>`);
+        `<p>${index + 1}</p>`);
+        
+            if(bombContainer.includes(index+1)){
+                newCell.classList.add('bomb');
+            }
 
         newCell.addEventListener('click', function(){
             console.log(index + 1);
-            this.classList.toggle('azure-square'); 
+            console.log(this.classList)
+            if(newCell.classList.contains('bomb')){
+            newCell.classList.toggle('red-square');
+            alert('hai perso!')
+            gridElement.innerHTML = "";
+            }else{
+                newCell.classList.toggle('azure-square');
+            }
         });
 
         gridElement.appendChild(newCell);
     }
 }
+
 
 /**
  * Function that creates a custom HTML element with the given tag and classes (as a string)

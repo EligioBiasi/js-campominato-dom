@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+
+main{
+    background-color: #7fffd4;
+}
+
+footer{
+    width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+header button{
+    padding: 0 1.5rem;
+}
+
+main section {
+    padding: 3rem 0;
+}
+
+div.grid{
+    width: 800px;
+    height: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div.square{
+    width: calc(100%/10);
+    height: calc(100%/10);
+    cursor: pointer;
+    border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.azure-square{
+    background-color: azure;
+}

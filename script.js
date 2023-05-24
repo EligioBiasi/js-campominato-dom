@@ -1,66 +1,48 @@
-// Copiamo la griglia fatta ieri nella nuova repo e aggiungiamo la logica del gioco.
+const playButton = document.getElementById('button-game');
+playButton.addEventListener(('click'), function(){
+    startNewGame();
+});
 
-const gridContainer = document.querySelector('div');
-const button = document.getElementById('button-game');
+function startNewGame(){
+    const gridElement = document.querySelector('div.grid');
 
+    gridElement.innerHTML = "";
 
-for(i=1;i<101;i++){
-    const showingSquare = createSquare('div','square');
-    showingSquare.append([i]);
+    for (let index = 0; index < 100; index++) {
+        const newCell = createElement('div','square',
+                        `<p>${index + 1}</p>`);
 
-    // Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
-    //devo collegare l'array di bombe generate ai numeri dei quadrati
-    // devo dar loro calsse red-square on click
-    // e quando questo succede deve apparire un messaggio di sconfitta e il gioco deve fermarsi
-    button.addEventListener('click',function(){
-        gridContainer.classList.add('grid');
-        showingSquare.classList.add('square');
-        gridContainer.appendChild(showingSquare);
-        showingSquare.classList.remove('azure-square');
-        showingSquare.classList.remove('red-square');
+        newCell.addEventListener('click', function(){
+            console.log(index + 1);
+            this.classList.toggle('azure-square'); 
+        });
 
-
-    })
-
-    showingSquare.addEventListener('click', function(){
-        showingSquare.classList.toggle('azure-square');
-    })
+        gridElement.appendChild(newCell);
+    }
 }
-//La partita termina quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti 
-
-
 
 /**
- *  function that will create html element
- * @param tag 
- * @param classTag 
+ * Function that creates a custom HTML element with the given tag and classes (as a string)
+ *
+ * @param {string} tagName The tag of the element to be created as a string
+ * @param {string} className The classes of the element to be created as a string
+ * @param {string} htmlContent The content of the element to be created as a string, including html tags.
  */
-function createSquare (tag, classTag){
-    const square = document.createElement(tag);
-    square.classTag+= classTag;
-    return square;
+function createElement(tagName, className, htmlContent){
+    const htmlElement = document.createElement(tagName);
+    htmlElement.className = className;
+    htmlElement.innerHTML = htmlContent;
+    return htmlElement;
 }
 
-/**Function that generates a random number
- * 
- * @param {*} minumNumber is the maximum number in the range
- * @param {*} maximumNumber is the minimum number in the range
- * @returns 
+/**
+ * Function that generates an array of random unique numbers between two values (both included).
+ *
+ * @param minNum The minimum interval for the random generated numbers
+ * @param maxNum The maximum interval for the random generated numbers
+ * @param elements The number of elements to be generated
+ * @returns The list of random unique generated numbers, or an empty array if it is not possibile to generate that amount of numbers within the given interval.
  */
-
-function getRandomInt(minumNumber, maximumNumber){
-    const randomNumber = (Math.floor( Math.random() * maximumNumber) + minumNumber);
-    return randomNumber;
-}
-
-/** function that generates x random numbers always different
- * 
- * @param {*} minNum 
- * @param {*} maxNum 
- * @param {*} elements 
- * @returns 
- */
-
 function getRandomUniqueNumber( minNum, maxNum, elements ){
     const numbersList = [];
 
@@ -76,4 +58,17 @@ function getRandomUniqueNumber( minNum, maxNum, elements ){
     }
 
     return numbersList;
+}
+
+/**
+ * Function that generates a random number (not secure) between two values, both included.
+ *
+ * @param minumNumber the included minium value of the random generated number range.
+ * @param maximumNumber the included maximum value of the random generated number range
+ * @returns A randomly generated number.
+ */
+function getRandomInt(minumNumber, maximumNumber){
+    const randomNumber = Math.floor( Math.random() * ( maximumNumber - minumNumber +1) + minumNumber);
+
+    return randomNumber;
 }

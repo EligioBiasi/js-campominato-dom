@@ -10,11 +10,11 @@ for(i=1;i<101;i++){
         gridContainer.classList.add('grid');
         showingSquare.classList.add('square');
         gridContainer.appendChild(showingSquare);
+        showingSquare.classList.remove('azure-square');
     })
 
     showingSquare.addEventListener('click', function(){
         showingSquare.classList.toggle('azure-square');
-        console.log(document.querySelector('div.azure-square').innerHTML)
     })
 }
 

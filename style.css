@@ -57,3 +57,8 @@ div.square{
 .red-square{
     background-color: red;
 }
+
+#output{
+    text-align: center;
+    font-size: 150px;
+}

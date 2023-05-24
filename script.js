@@ -1,6 +1,7 @@
 const playButton = document.getElementById('button-game');
 playButton.addEventListener(('click'), function(){
     startNewGame();
+    document.getElementById('output').innerHTML=''
 });
 
 function startNewGame(){
@@ -22,18 +23,26 @@ function startNewGame(){
         newCell.addEventListener('click', function(){
             console.log(index + 1);
             console.log(this.classList)
+
             if(newCell.classList.contains('bomb')){
-            newCell.classList.toggle('red-square');
-            alert('hai perso!')
-            gridElement.innerHTML = "";
+                newCell.classList.toggle('red-square');
+                document.getElementById('output').innerHTML='Hai perso!'
+                gridElement.innerHTML = "";
             }else{
                 newCell.classList.toggle('azure-square');
+                counter++
+                if(counter==84){
+                document.getElementById('output').innerHTML='Hai Vinto!'
+
+                }
             }
         });
 
         gridElement.appendChild(newCell);
     }
 }
+
+        let counter = 0
 
 
 /**

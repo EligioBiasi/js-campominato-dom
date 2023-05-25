@@ -30,6 +30,7 @@ function startNewGame(){
                 gridElement.innerHTML = "";
             }else{
                 newCell.classList.toggle('azure-square');
+                // found a bug, game will give victory even if you click 84 times in a safe square
                 counter++
                 if(counter==84){
                 document.getElementById('output').innerHTML='Hai Vinto!'
